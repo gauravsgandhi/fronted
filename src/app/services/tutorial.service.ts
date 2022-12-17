@@ -3,13 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Tutorial } from '../models/tutorial.model';
 
-httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Access-Control-Allow-Origin': '*',
-    }),
-  };
-
 const baseUrl = 'http://localhost:9000/api/tutorials';
 
 @Injectable({
@@ -20,7 +13,7 @@ export class TutorialService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Tutorial[]> {
-    return this.http.get<Tutorial[]>(baseUrl,this.httpOptions);
+    return this.http.get<Tutorial[]>(baseUrl);
   }
 
   get(id: any): Observable<Tutorial> {
@@ -28,7 +21,7 @@ export class TutorialService {
   }
 
   create(data: any): Observable<any> {
-    return this.http.post(baseUrl, data, this.httpOptions);
+    return this.http.post(baseUrl, data);
   }
 
   update(id: any, data: any): Observable<any> {
